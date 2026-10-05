@@ -117,6 +117,26 @@ banner shows up, e.g. `screen /dev/tty.usbmodem* 115200` on macOS or
 `picocom -b 115200 /dev/ttyACM0` on Linux. On Windows use PuTTY with the COM
 port from the Device Manager.
 
+## Board
+
+| LED / button | Pin | Zephyr alias |
+|---|---|---|
+| LD1 (green) | PB0 | `led0` |
+| LD2 (blue) | PB7 | `led1` |
+| LD3 (red) | PB14 | `led2` |
+| B1 (user button) | PC13 | `sw0` |
+
+B2 is reset. The other LEDs are controlled by hardware:
+
+- LD4 (COM): ST-Link status. Blinks red/green while OpenOCD is connected, solid
+  red when idle, orange on a communication error.
+- LD5 (red): overcurrent (> 500 mA)
+- LD6 (PWR): power
+- LD7 (red): overcurrent on the USB OTG port (CN13)
+
+Details: [UM1974](https://www.st.com/resource/en/user_manual/um1974-stm32-nucleo144-boards-mb1137-stmicroelectronics.pdf),
+schematics: [nucleo_144pins_sch.zip](https://www.st.com/resource/en/schematic_pack/nucleo_144pins_sch.zip).
+
 ## Known problems
 
 - `Kein OpenOCD auf dem Host erreichbar`: OpenOCD isn't running on the host or
